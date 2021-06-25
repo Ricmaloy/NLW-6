@@ -64,6 +64,10 @@ $ yarn start
   🔲 - Aprimorar a responsividade da aplicação para vários tipos de tela
 
   🔲 - Autenticação com +1 meio social
+  
+  🔲 - Utilizar React Hot Toast
+  
+  🔲 - Desenvolver Modais para aplicação (exclusão de sala)
 
 # Contatos
 
