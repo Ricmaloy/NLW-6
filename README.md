@@ -65,7 +65,7 @@ $ yarn start
 
   🔲 - Autenticação com +1 meio social
   
-  🔲 - Utilizar React Hot Toast
+  ✅ - Utilizar React Hot Toast
   
   🔲 - Desenvolver Modais para aplicação (exclusão de sala)
 

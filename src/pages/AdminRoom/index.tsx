@@ -5,6 +5,7 @@ import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 
 // import { useAuth } from '../../hooks/useAuth';
+import EmptyQuestions from '../../assets/empty-questions.svg';
 
 import { database } from '../../services/firebase';
 
@@ -74,7 +75,9 @@ export function AdminRoom() {
                 </div>
 
                 <div className="question-list">
-                    {questions.map(question => {
+                    {
+                    questions.length !== 0 ? (
+                    questions.map(question => {
                         return (
                             <Question
                                 key={question.id}
@@ -107,7 +110,14 @@ export function AdminRoom() {
                                 </button>
                             </Question>
                         )
-                    })}
+                    }) ) : (
+                        <div className="emptyQuestions">
+                            <img src={EmptyQuestions} alt="Não há perguntas" />
+                            <h3>Nenhuma pergunta por aqui...</h3>
+                            <span>Envie a sala para seus ouvintes e começe a responder</span>
+                        </div>
+                    )
+                }
                 </div>
             </main>
         </div>

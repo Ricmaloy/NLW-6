@@ -11,6 +11,7 @@ import logoImg from "../../assets/logo.svg";
 import Typist from 'react-typist';
 
 import './styles.scss'
+import toast from 'react-hot-toast';
 
 export function NewRoom(){
     const { user } = useAuth();
@@ -20,6 +21,17 @@ export function NewRoom(){
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault();
         if (newRoom.trim() === '') {
+            toast.error('Invalid name !', {
+                style: {
+                  border: '1px solid #fd4141',
+                  padding: '16px',
+                  color: '#333333',
+                },
+                iconTheme: {
+                  primary: '#fd4141',
+                  secondary: '#FFFAEE',
+                },
+            });
             return;
         }
         const roomRef = database.ref('rooms');
@@ -29,7 +41,19 @@ export function NewRoom(){
             authorId: user?.id
         });
 
-        history.replace(`admin/rooms/${firebaseRoom.key}`)
+        history.replace(`admin/rooms/${firebaseRoom.key}`);
+
+        toast.success('Sala criada com sucesso !', {
+            style: {
+              border: '1px solid #16C60C',
+              padding: '16px',
+              color: '#333333',
+            },
+            iconTheme: {
+              primary: '#16C60C',
+              secondary: '#FFFAEE',
+            },
+        });
 
     }
     return(

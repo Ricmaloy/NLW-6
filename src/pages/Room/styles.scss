@@ -44,6 +44,20 @@
         
         .question-list {
             margin-top: 32px;
+            margin-bottom: 50px;
+
+            .emptyQuestions {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    margin-bottom: 20px;
+                    margin-top: 30px;
+                }
+            }
         }
     }
 

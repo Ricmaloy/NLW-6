@@ -11,6 +11,7 @@ import { FormEvent } from 'react';
 import { useState } from 'react';
 import { database } from '../../services/firebase';
 import Typist from 'react-typist';
+import toast from 'react-hot-toast';
 
 export function Home() {
     const history = useHistory(); 
@@ -28,18 +29,49 @@ export function Home() {
         event.preventDefault();
 
         if(roomCode.trim() === '') {
+            toast.error('Invalid name', {
+                style: {
+                  border: '1px solid #fd4141',
+                  padding: '16px',
+                  color: '#333333',
+                },
+                iconTheme: {
+                  primary: '#fd4141',
+                  secondary: '#FFFAEE',
+                },
+            });
             return;
         }
 
         const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
         if(!roomRef.exists()) {
-            alert('Room does not exists');
+            toast.error('Could not find the room !', {
+                style: {
+                  border: '1px solid #fd4141',
+                  padding: '16px',
+                  color: '#333333',
+                },
+                iconTheme: {
+                  primary: '#fd4141',
+                  secondary: '#FFFAEE',
+                },
+            });
             return;
         }
 
         if(roomRef.val().endedAt) {
-            alert('Room already closed');
+            toast.error('Room already closed !', {
+                style: {
+                  border: '1px solid #fd4141',
+                  padding: '16px',
+                  color: '#333333',
+                },
+                iconTheme: {
+                  primary: '#fd4141',
+                  secondary: '#FFFAEE',
+                },
+            });
             return;
         }
 
