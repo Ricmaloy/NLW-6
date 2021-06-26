@@ -54,8 +54,23 @@ export function useRoom(roomId: string) {
                 }
             });
 
+            const sortedQuestions = parsedQuestions.sort((a, b) => a.likeCount < b.likeCount ? 1 : -1 );
+
+            const answeredQuestions: { id: string; content: string; author: { name: string; avatar: string; }; isHighlighted: boolean; isAnswered: boolean; likeCount: number; likeId: string | undefined; }[] = [];
+            const unansweredQuestions: { id: string; content: string; author: { name: string; avatar: string; }; isHighlighted: boolean; isAnswered: boolean; likeCount: number; likeId: string | undefined; }[] = [];
+
+            sortedQuestions.forEach(question => {
+                if(question.isAnswered === true) {
+                    answeredQuestions.push(question);
+                } else {
+                    unansweredQuestions.push(question);
+                }
+            });
+
+            const formatedQuestions = [...unansweredQuestions, ...answeredQuestions];
+
             setTitle(databaseRoom.title);
-            setQuestions(parsedQuestions);
+            setQuestions(formatedQuestions);
         });
 
         return () => {

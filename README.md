@@ -59,7 +59,7 @@ $ yarn start
 
   🔲 - Fazer pergunta de maneira anônima
   
-  🔲 - Ordenar as perguntas por quantidade de likes
+  ✅ - Ordenar as perguntas por quantidade de likes
 
   🔲 - Aprimorar a responsividade da aplicação para vários tipos de tela
 
