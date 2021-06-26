@@ -69,6 +69,8 @@ $ yarn start
   
   🔲 - Desenvolver Modais para aplicação (exclusão de sala)
 
+  ✅ - Animação de Typing nas telas Home e New Room
+
 # Contatos
 
  você vai me encontrar em qualquer uma das redes sociais abaixo 🍻

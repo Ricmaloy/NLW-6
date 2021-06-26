@@ -5,12 +5,12 @@ import illustrationImg from '../../assets/illustration.svg';
 import logoImg from '../../assets/logo.svg';
 import googleIcon from '../../assets/google-icon.svg';
 
-
 import './styles.scss';
 import { useAuth } from '../../hooks/useAuth';
 import { FormEvent } from 'react';
 import { useState } from 'react';
 import { database } from '../../services/firebase';
+import Typist from 'react-typist';
 
 export function Home() {
     const history = useHistory(); 
@@ -50,8 +50,11 @@ export function Home() {
         <div id="page-auth" >
             <aside>
                 <img src={illustrationImg} alt="Illustration simbolizando perguntas e respostas" />
-                <strong>Crie salas de Q&amp;A</strong>
-                <p>Tire as dúvidas da sua audiência em tempo real</p>
+                <Typist>
+                    <strong>Crie salas de Q&amp;A</strong><br/>
+                    <Typist.Delay ms={1000} />
+                    <span>Tire as dúvidas da sua audiência em tempo real</span>
+                </Typist>
             </aside>
             <main>
                 <div className="main-content">

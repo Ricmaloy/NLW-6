@@ -8,6 +8,7 @@ import {Button} from "../../components/Button";
 
 import illustration from "../../assets/illustration.svg";
 import logoImg from "../../assets/logo.svg";
+import Typist from 'react-typist';
 
 import './styles.scss'
 
@@ -35,8 +36,11 @@ export function NewRoom(){
         <div id="page-auth">
             <aside>
                 <img src={ illustration } alt="Inicial Imagem Login"/>
-                <strong>Crie salas de Q&amp;A ao vivo!</strong>
-                <p>Tire as dúvidas de sua audiência em tempo real.</p>
+                <Typist>
+                    <strong>Chame as pessoas !</strong><br/>
+                    <Typist.Delay ms={1000} />
+                    <span>Interaja com aqueles que te acompanham</span>
+                </Typist>
             </aside >
             <main>
                 <div className="main-content">
