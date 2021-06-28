@@ -70,6 +70,8 @@ export const EmptyQuestion = styled.div`
     align-items: center;
     gap: 5px;
 
+    color: ${props => props.theme.colors.card_text_primary};
+
     img {
         margin-bottom: 20px;
         margin-top: 30px;
@@ -80,4 +82,53 @@ export const RoomInfos = styled.div`
     display: flex;
     align-items: center;
     gap: 18px;
+`;
+
+export const ModalContainer = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 70px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+        color: ${props => props.theme.colors.card_text_primary};
+    }
+
+    p {
+        margin-bottom: 35px;
+        color: ${props => props.theme.colors.card_text_secondary};
+    }
+
+    div button {
+        width: 130px;
+        height: 50px;
+        border-radius: 8px;
+
+        cursor: pointer;
+        border: none;
+
+        background: #DBDCDD;
+        color: #737380;
+
+        transition: filter .2s;
+
+        & + button {
+            margin-left: 12px;
+
+            background: #E73F5D;
+            color: #fff;
+        }
+
+        &:hover {
+            filter: brightness(0.9);
+        }
+        
+    }
 `;

@@ -42,7 +42,7 @@ const ThemeProvider:  React.FC = ({ children }) => {
         if(storageTheme) {
             return JSON.parse(storageTheme);
         } else {
-            return dark;
+            return light;
         }
     });
 
