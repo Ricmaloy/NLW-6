@@ -4,7 +4,6 @@ import { RoomCode } from '../../components/RoomCode';
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 
-// import { useAuth } from '../../hooks/useAuth';
 import EmptyQuestions from '../../assets/empty-questions.svg';
 
 import { database } from '../../services/firebase';
@@ -16,7 +15,14 @@ import answerImg from '../../assets/answer.svg';
 
 import { useRoom } from '../../hooks/useRoom';
 
-import './styles.scss';
+import { Container, 
+        Header, 
+        HeaderContent, 
+        Main, 
+        QuestionList, 
+        RoomTitle, 
+        EmptyQuestion 
+} from './styles';
 
 
 type RoomParams = {
@@ -24,7 +30,6 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-    // const { user } = useAuth();
     const history = useHistory();
     const params = useParams<RoomParams>();
     const roomId = params.id;
@@ -57,24 +62,24 @@ export function AdminRoom() {
     }
 
     return ( 
-        <div id="page-room">
-            <header>
-                <div className="content">
+        <Container>
+            <Header>
+                <HeaderContent>
                     <img src={logoImg} alt="LetmeAsk" />
                     <div>
                         <RoomCode code={roomId} />
                         <Button onClick={handleEndRoom} isOutlined >Encerrar sala</Button>
                     </div>
-                </div>
-            </header>
+                </HeaderContent>
+            </Header>
 
-            <main>
-                <div className="room-title">
+            <Main>
+                <RoomTitle>
                     <h1>Sala {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta (s)</span>}
-                </div>
+                </RoomTitle>
 
-                <div className="question-list">
+                <QuestionList>
                     {
                     questions.length !== 0 ? (
                     questions.map(question => {
@@ -111,15 +116,15 @@ export function AdminRoom() {
                             </Question>
                         )
                     }) ) : (
-                        <div className="emptyQuestions">
+                        <EmptyQuestion>
                             <img src={EmptyQuestions} alt="Não há perguntas" />
                             <h3>Nenhuma pergunta por aqui...</h3>
                             <span>Envie a sala para seus ouvintes e começe a responder</span>
-                        </div>
+                        </EmptyQuestion>
                     )
                 }
-                </div>
-            </main>
-        </div>
+                </QuestionList>
+            </Main>
+        </Container>
     )
 }

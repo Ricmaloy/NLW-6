@@ -1,4 +1,6 @@
-.question {
+import styled from 'styled-components';
+
+export const QuestionContainer = styled.div`
     background: #fefefe;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba($color: #000000, $alpha:0.04);
@@ -24,8 +26,10 @@
     &.answered {
         background: #dbdcdd ;
     }
-    footer {
-        display: flex;
+`;
+
+export const QuestionFooter = styled.footer`
+    display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 24px;
@@ -77,5 +81,4 @@
                 filter: brightness(0.7);
             }
         }
-    }
-}
+`;

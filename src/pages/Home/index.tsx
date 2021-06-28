@@ -1,3 +1,4 @@
+import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '../../components/Button';
 
@@ -5,10 +6,9 @@ import illustrationImg from '../../assets/illustration.svg';
 import logoImg from '../../assets/logo.svg';
 import googleIcon from '../../assets/google-icon.svg';
 
-import './styles.scss';
+import { Aside, Container, CreateButton, Main, MainContent, Separator } from './styles';
+
 import { useAuth } from '../../hooks/useAuth';
-import { FormEvent } from 'react';
-import { useState } from 'react';
 import { database } from '../../services/firebase';
 import Typist from 'react-typist';
 import toast from 'react-hot-toast';
@@ -79,23 +79,23 @@ export function Home() {
     }
 
     return (
-        <div id="page-auth" >
-            <aside>
+        <Container>
+            <Aside>
                 <img src={illustrationImg} alt="Illustration simbolizando perguntas e respostas" />
                 <Typist>
                     <strong>Crie salas de Q&amp;A</strong><br/>
                     <Typist.Delay ms={1000} />
                     <span>Tire as dúvidas da sua audiência em tempo real</span>
                 </Typist>
-            </aside>
-            <main>
-                <div className="main-content">
+            </Aside>
+            <Main>
+                <MainContent>
                     <img src={logoImg} alt="Logotipo da aplicação let me ask" />
-                    <button className="create-room" onClick={handleCreateRoom}>
+                    <CreateButton onClick={handleCreateRoom}>
                         <img src={googleIcon} alt="Logo do Google" />
                         Crie sua sala com o Google
-                    </button>
-                    <div className="separator">ou entre em uma sala</div>
+                    </CreateButton>
+                    <Separator className="separator">ou entre em uma sala</Separator>
                     <form onSubmit={handleJoinRoom}>
                         <input 
                           type="text"
@@ -105,8 +105,8 @@ export function Home() {
                         />
                         <Button type="submit">Entrar na sala</Button>
                     </form>
-                </div>
-            </main>
-        </div>
+                </MainContent>
+            </Main>
+        </Container>
     );
 };

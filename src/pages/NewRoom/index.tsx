@@ -9,9 +9,9 @@ import {Button} from "../../components/Button";
 import illustration from "../../assets/illustration.svg";
 import logoImg from "../../assets/logo.svg";
 import Typist from 'react-typist';
-
-import './styles.scss'
 import toast from 'react-hot-toast';
+
+import { Aside, Container, Main, MainContent } from './styles';
 
 export function NewRoom(){
     const { user } = useAuth();
@@ -57,17 +57,17 @@ export function NewRoom(){
 
     }
     return(
-        <div id="page-auth">
-            <aside>
+        <Container>
+            <Aside>
                 <img src={ illustration } alt="Inicial Imagem Login"/>
                 <Typist>
                     <strong>Chame as pessoas !</strong><br/>
                     <Typist.Delay ms={1000} />
                     <span>Interaja com aqueles que te acompanham</span>
                 </Typist>
-            </aside >
-            <main>
-                <div className="main-content">
+            </Aside >
+            <Main>
+                <MainContent>
                     <img src={ logoImg } alt="LetMeAsk" />
                     <h2>Crie uma nova sala</h2>
                     <form onSubmit={handleCreateRoom}>
@@ -82,8 +82,8 @@ export function NewRoom(){
                         </Button>
                     </form>
                     <p>Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link></p>
-                </div>
-            </main>
-        </div>
+                </MainContent>
+            </Main>
+        </Container>
     )
 }

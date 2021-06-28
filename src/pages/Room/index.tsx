@@ -12,7 +12,18 @@ import { database } from '../../services/firebase';
 import logoImg from '../../assets/logo.svg';
 import EmptyQuestions from '../../assets/empty-questions.svg';
 
-import './styles.scss';
+import {
+    EmptyQuestionsContainer,
+    FormFooter,
+    Header,
+    HeaderContent,
+    Main,
+    QuestionFormInput,
+    QuestionsList,
+    RoomTitle,
+    UserInfo
+} from './styles';
+
 import { useRoom } from '../../hooks/useRoom';
 import toast from 'react-hot-toast';
 
@@ -69,40 +80,40 @@ export function Room() {
     }
 
     return ( 
-        <div id="page-room">
-            <header>
-                <div className="content">
+        <div>
+            <Header>
+                <HeaderContent>
                     <img src={logoImg} alt="LetmeAsk" />
                     <RoomCode code={roomId} />
-                </div>
-            </header>
+                </HeaderContent>
+            </Header>
 
-            <main>
-                <div className="room-title">
+            <Main>
+                <RoomTitle>
                     <h1>Sala {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta (s)</span>}
-                </div>
+                </RoomTitle>
 
                 <form onSubmit={handleSendNewQuestion}>
-                    <textarea 
+                    <QuestionFormInput 
                       value={newQuestion}
                       placeholder="O que você quer perguntar ?"
                       onChange={event => setNewQuestion(event.target.value)}
                     />
-                    <div className="form-footer">
+                    <FormFooter>
                         { user ? (
-                            <div className="user-info">
+                            <UserInfo>
                                 <img src={user.avatar} alt={user.name} />
                                 <span>{user.name}</span>
-                            </div>
+                            </UserInfo>
                         ) : (
                             <span>Pare enviar uma pergunta, <button>faça seu login</button>.</span>
                         ) }
                         
                         <Button type="submit" disabled={!user}>Enviar Pergunta</Button>
-                    </div>
+                    </FormFooter>
                 </form>
-                <div className="question-list">
+                <QuestionsList>
                     {
                     questions.length !== 0 ? (
                         questions.map(question => {
@@ -130,16 +141,16 @@ export function Room() {
                                 </Question>
                             )
                         }) ) : (
-                            <div className="emptyQuestions">
+                            <EmptyQuestionsContainer>
                                 <img src={EmptyQuestions} alt="Não há perguntas" />
                                 <h3>Nenhuma pergunta por aqui...</h3>
                                 <span>Seja a primeira pessoa a fazer uma pergunta!</span>
-                            </div>
+                            </EmptyQuestionsContainer>
                         )
                     }
                         
-                </div>
-            </main>
+                </QuestionsList>
+            </Main>
         </div>
     )
 }
