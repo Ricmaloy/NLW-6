@@ -57,7 +57,7 @@ $ yarn start
 
   ✅ - Dark Theme UI com switch 
 
-  🔲 - Fazer pergunta de maneira anônima
+  ✅ - Fazer pergunta de maneira anônima
   
   ✅ - Ordenar as perguntas por quantidade de likes
 
@@ -67,7 +67,7 @@ $ yarn start
   
   ✅ - Utilizar React Hot Toast
   
-  ✅ - Desenvolver Modais para aplicação (exclusão de sala)
+  ✅ - Desenvolver Modais para aplicação (exclusão de sala e comentário)
 
   ✅ - Animação de Typing nas telas Home e New Room
 
