@@ -67,7 +67,7 @@ $ yarn start
   
   ✅ - Utilizar React Hot Toast
   
-  🔲 - Desenvolver Modais para aplicação (exclusão de sala)
+  ✅ - Desenvolver Modais para aplicação (exclusão de sala)
 
   ✅ - Animação de Typing nas telas Home e New Room
 
