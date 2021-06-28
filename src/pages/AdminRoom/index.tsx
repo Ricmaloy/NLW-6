@@ -21,17 +21,19 @@ import DeleteImg from '../../assets/delete.svg';
 import checkImg from '../../assets/check.svg';
 import answerImg from '../../assets/answer.svg';
 import Close from '../../assets/close.svg';
+import redDelete from '../../assets/redDelete.svg';
 
 
-import { Container, 
-        Header, 
-        HeaderContent, 
-        Main, 
-        QuestionList, 
-        RoomTitle, 
-        EmptyQuestion,
-        RoomInfos,
-        ModalContainer
+import { 
+    Container, 
+    Header, 
+    HeaderContent, 
+    Main, 
+    QuestionList, 
+    RoomTitle, 
+    EmptyQuestion,
+    RoomInfos,
+    ModalContainer
 } from './styles';
 
 
@@ -47,12 +49,15 @@ export function AdminRoom() {
     const roomId = params.id;
     const { questions, title } = useRoom(roomId);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEndRoomModalOpen, setIsEndRoomModalOpen] = useState(false);
+    const [isDeleteQuestionModalOpen, setIsDeleteQuestionModalOpen] = useState(false);
+
+    const [deleteQuestionId, setDeleteQuestionId] = useState('');
 
     async function handleDeleteQuestion(questionId: string) {
-        if(window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
-            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-        }
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+
+        setIsDeleteQuestionModalOpen(false);
     }
 
     async function handleEndRoom() {
@@ -75,8 +80,18 @@ export function AdminRoom() {
         })
     }
 
-    function handleCloseModal() {
-        setIsModalOpen(false);
+    function handleCloseEndRoomModal() {
+        setIsEndRoomModalOpen(false);
+    }
+
+    function handleOpenDeleteQuestionModal(questionId: string) {
+        setDeleteQuestionId(questionId);
+        setIsDeleteQuestionModalOpen(true);
+    }
+
+    function handleCloseDeleteQuestionModal() {
+        setIsDeleteQuestionModalOpen(false);
+        setDeleteQuestionId('');
     }
 
     const modalStyles= {
@@ -101,7 +116,7 @@ export function AdminRoom() {
                     <img src={ theme.title === 'light' ? logoImg : logoWhiteImg} alt="Logotipo da aplicação let me ask" />
                     <RoomInfos>
                         <RoomCode code={roomId} />
-                        <Button onClick={() => setIsModalOpen(true)} isOutlined >Encerrar sala</Button>
+                        <Button onClick={() => setIsEndRoomModalOpen(true)} isOutlined >Encerrar sala</Button>
                         <SwitchBtn />
                     </RoomInfos>
                 </HeaderContent>
@@ -143,7 +158,7 @@ export function AdminRoom() {
                                 )}
                                 <button
                                     type="button"
-                                    onClick={() => handleDeleteQuestion(question.id)}
+                                    onClick={() => handleOpenDeleteQuestionModal(question.id)}
                                 >
                                     <img src={DeleteImg} alt="Remover pergunta" />
                                 </button>
@@ -161,8 +176,8 @@ export function AdminRoom() {
             </Main>
                 
             <Modal
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
+                isOpen={isEndRoomModalOpen}
+                onRequestClose={handleCloseEndRoomModal}
                 style={modalStyles}
             >
                 <ModalContainer>
@@ -172,12 +187,34 @@ export function AdminRoom() {
                     <div>
                         <button 
                             type="button"
-                            onClick={handleCloseModal}
+                            onClick={handleCloseEndRoomModal}
                         >Cancelar</button>
                         <button 
                             type="button"
                             onClick={() => handleEndRoom()}
                         >Sim, encerrar</button>
+                    </div>
+                </ModalContainer>
+            </Modal>
+
+            <Modal
+                isOpen={isDeleteQuestionModalOpen}
+                onRequestClose={handleCloseDeleteQuestionModal}
+                style={modalStyles}
+            >
+                <ModalContainer>
+                    <img src={redDelete} alt="Apagar imagemh" />
+                    <h1>Excluir pergunta</h1>
+                    <p>Tem certeza que você deseja excluir esta pergunta ?</p>
+                    <div>
+                        <button 
+                            type="button"
+                            onClick={handleCloseDeleteQuestionModal}
+                        >Cancelar</button>
+                        <button 
+                            type="button"
+                            onClick={() => handleDeleteQuestion(deleteQuestionId)}
+                        >Sim, excluir</button>
                     </div>
                 </ModalContainer>
             </Modal>
