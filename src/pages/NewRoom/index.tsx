@@ -4,17 +4,21 @@ import {Link, useHistory} from 'react-router-dom'
 import {useAuth} from "../../hooks/useAuth";
 import {database} from "../../services/firebase";
 
+import { SwitchBtn } from '../../components/SwitchBtn';
 import {Button} from "../../components/Button";
 
 import illustration from "../../assets/illustration.svg";
 import logoImg from "../../assets/logo.svg";
+import logoWhiteImg from "../../assets/logo-white.svg";
 import Typist from 'react-typist';
 import toast from 'react-hot-toast';
 
-import { Aside, Container, Main, MainContent } from './styles';
+import { Aside, Container, Main, MainContent, SwitchContainer } from './styles';
+import { useTheme } from '../../hooks/useTheme';
 
 export function NewRoom(){
     const { user } = useAuth();
+    const { theme } = useTheme();
     const history = useHistory()
     const [newRoom, setNewRoom] = useState('');
 
@@ -68,7 +72,7 @@ export function NewRoom(){
             </Aside >
             <Main>
                 <MainContent>
-                    <img src={ logoImg } alt="LetMeAsk" />
+                    <img src={ theme.title === 'light' ? logoImg : logoWhiteImg} alt="Logotipo da aplicação let me ask" />
                     <h2>Crie uma nova sala</h2>
                     <form onSubmit={handleCreateRoom}>
                         <input
@@ -82,6 +86,10 @@ export function NewRoom(){
                         </Button>
                     </form>
                     <p>Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link></p>
+
+                    <SwitchContainer>
+                        <SwitchBtn />
+                    </SwitchContainer>
                 </MainContent>
             </Main>
         </Container>

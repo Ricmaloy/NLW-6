@@ -1,6 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 
 import { RoomCode } from '../../components/RoomCode';
+import { SwitchBtn } from '../../components/SwitchBtn';
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 
@@ -9,6 +10,7 @@ import EmptyQuestions from '../../assets/empty-questions.svg';
 import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/logo.svg';
+import logoWhiteImg from '../../assets/logo-white.svg';
 import DeleteImg from '../../assets/delete.svg';
 import checkImg from '../../assets/check.svg';
 import answerImg from '../../assets/answer.svg';
@@ -21,8 +23,10 @@ import { Container,
         Main, 
         QuestionList, 
         RoomTitle, 
-        EmptyQuestion 
+        EmptyQuestion,
+        RoomInfos
 } from './styles';
+import { useTheme } from '../../hooks/useTheme';
 
 
 type RoomParams = {
@@ -31,6 +35,7 @@ type RoomParams = {
 
 export function AdminRoom() {
     const history = useHistory();
+    const { theme } = useTheme();
     const params = useParams<RoomParams>();
     const roomId = params.id;
     const { questions, title } = useRoom(roomId);
@@ -65,11 +70,12 @@ export function AdminRoom() {
         <Container>
             <Header>
                 <HeaderContent>
-                    <img src={logoImg} alt="LetmeAsk" />
-                    <div>
+                    <img src={ theme.title === 'light' ? logoImg : logoWhiteImg} alt="Logotipo da aplicação let me ask" />
+                    <RoomInfos>
                         <RoomCode code={roomId} />
                         <Button onClick={handleEndRoom} isOutlined >Encerrar sala</Button>
-                    </div>
+                        <SwitchBtn />
+                    </RoomInfos>
                 </HeaderContent>
             </Header>
 

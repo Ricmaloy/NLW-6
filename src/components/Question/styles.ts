@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const QuestionContainer = styled.div`
-    background: #fefefe;
+    background: ${props => props.theme.colors.card};
     border-radius: 8px;
-    box-shadow: 0 2px 12px rgba($color: #000000, $alpha:0.04);
+    box-shadow: 0 2px 12px rgba( 0, 0, 0, 0.04);
     padding: 24px;
 
     p {
-        color: #29292e;
+        color: ${props => props.theme.colors.card_text_primary};
     }
 
     & + .question {
@@ -15,16 +15,16 @@ export const QuestionContainer = styled.div`
     }
 
     &.highlighted {
-        background: #f4f0ff;
+        background: ${props => props.theme.colors.card_highlight};
         border: 1px solid #835afd;
 
         footer .user-info span {
-            color: #29292e;
+            color: ${props => props.theme.colors.card_text_secondary};
         }
     }
 
     &.answered {
-        background: #dbdcdd ;
+        background: ${props => props.theme.colors.card_inactive};
     }
 `;
 
@@ -46,7 +46,7 @@ export const QuestionFooter = styled.footer`
 
             span {
                 margin-left: 8px;
-                color: #737380;
+                color: ${props => props.theme.colors.card_text_secondary};
                 font-size: 14px;
             }
         }
@@ -65,7 +65,7 @@ export const QuestionFooter = styled.footer`
             &.like-button {
                 display: flex;
                 align-items: flex-end;
-                color: #737380;
+                color:  ${props => props.theme.colors.card_text_secondary};
                 gap: 8px;
 
                 &.liked {

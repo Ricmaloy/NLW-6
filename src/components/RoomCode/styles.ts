@@ -5,7 +5,7 @@ export const ButtonContainer = styled.button`
     border-radius: 8px;
     overflow: hidden;
 
-    background: #fff;
+    background: ${props => props.theme.colors.bg_secondary};
     border: 1px solid #835afd;
     cursor: pointer;
 
@@ -27,6 +27,8 @@ export const ButtonImg = styled.img`
 `;
 
 export const ButtonCode = styled.span`
+    color: ${props => props.theme.colors.card_text_primary};
+
     display: block;
     align-self: center;
     flex: 1;

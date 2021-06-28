@@ -10,9 +10,11 @@ import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/logo.svg';
+import logoWhiteImg from '../../assets/logo-white.svg';
 import EmptyQuestions from '../../assets/empty-questions.svg';
 
 import {
+    Container,
     EmptyQuestionsContainer,
     FormFooter,
     Header,
@@ -21,11 +23,15 @@ import {
     QuestionFormInput,
     QuestionsList,
     RoomTitle,
-    UserInfo
+    UserInfo,
+    RoomInfos
 } from './styles';
 
 import { useRoom } from '../../hooks/useRoom';
 import toast from 'react-hot-toast';
+import { useTheme } from '../../hooks/useTheme';
+import { SwitchBtn } from '../../components/SwitchBtn';
+
 
 type RoomParams = {
     id: string;
@@ -79,12 +85,17 @@ export function Room() {
         }
     }
 
+    const { theme } = useTheme();
+
     return ( 
-        <div>
+        <Container>
             <Header>
                 <HeaderContent>
-                    <img src={logoImg} alt="LetmeAsk" />
-                    <RoomCode code={roomId} />
+                    <img src={ theme.title === 'light' ? logoImg : logoWhiteImg} alt="Logotipo da aplicação let me ask" />
+                    <RoomInfos>
+                        <RoomCode code={roomId} />
+                        <SwitchBtn />
+                    </RoomInfos>
                 </HeaderContent>
             </Header>
 
@@ -151,6 +162,6 @@ export function Room() {
                         
                 </QuestionsList>
             </Main>
-        </div>
+        </Container>
     )
 }

@@ -9,8 +9,9 @@ export const Container = styled.div`
 export const Aside = styled.aside`
     width: 45vw;
 
-    background: #835afd;
-    color: #fff;
+    background: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.white};
+
 
     display: flex;
     flex-direction: column;
@@ -41,6 +42,8 @@ export const Main = styled.div`
 
     padding: 0 32px;
 
+    background: ${props => props.theme.colors.bg_primary};
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,12 +59,15 @@ export const MainContent = styled.main`
 
     > img {
         align-self: center;
+        width: 160px;
     }
 
     h2 {
         font-size: 24px;
         margin: 64px 0 24px;
         font-family: 'Poppins', sans-serif;
+
+        color: ${props => props.theme.colors.card_text_primary};
     }
 
     form {
@@ -69,8 +75,9 @@ export const MainContent = styled.main`
             height: 50px;
             border-radius: 8px;
             padding: 0 16px;
-            background: #fff;
-            border: 1px solid #a8a8b3;
+            background: ${props => props.theme.colors.card_highlight};
+            border: 1px solid ${props => props.theme.colors.border};
+            color: ${props => props.theme.colors.card_text_primary};
         }
 
         button {
@@ -91,4 +98,12 @@ export const MainContent = styled.main`
             color: #e559f9;
         }
     }
+`;
+
+export const SwitchContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-top: 30px;
 `;

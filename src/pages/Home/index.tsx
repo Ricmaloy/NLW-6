@@ -4,19 +4,24 @@ import { Button } from '../../components/Button';
 
 import illustrationImg from '../../assets/illustration.svg';
 import logoImg from '../../assets/logo.svg';
+import logoWhiteImg from '../../assets/logo-white.svg';
 import googleIcon from '../../assets/google-icon.svg';
 
-import { Aside, Container, CreateButton, Main, MainContent, Separator } from './styles';
+import { Aside, Container, CreateButton, Main, MainContent, Separator, SwitchContainer } from './styles';
 
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import Typist from 'react-typist';
 import toast from 'react-hot-toast';
+import { useTheme } from '../../hooks/useTheme';
+import { SwitchBtn } from '../../components/SwitchBtn';
 
 export function Home() {
     const history = useHistory(); 
     const { signInWithGoogle, user } = useAuth();
     const [roomCode, setRoomCode] = useState('');
+
+    const { theme } = useTheme();
 
     async function handleCreateRoom() {
         if(!user) {
@@ -90,7 +95,7 @@ export function Home() {
             </Aside>
             <Main>
                 <MainContent>
-                    <img src={logoImg} alt="Logotipo da aplicação let me ask" />
+                    <img src={ theme.title === 'light' ? logoImg : logoWhiteImg} alt="Logotipo da aplicação let me ask" />
                     <CreateButton onClick={handleCreateRoom}>
                         <img src={googleIcon} alt="Logo do Google" />
                         Crie sua sala com o Google
@@ -105,6 +110,9 @@ export function Home() {
                         />
                         <Button type="submit">Entrar na sala</Button>
                     </form>
+                    <SwitchContainer >
+                        <SwitchBtn/>
+                    </SwitchContainer>
                 </MainContent>
             </Main>
         </Container>

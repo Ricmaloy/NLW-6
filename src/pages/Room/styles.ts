@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+    background: ${props => props.theme.colors.bg_secondary};
+`;
+
 export const Header = styled.header`
     padding: 24px;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid ${props => props.theme.colors.border};
+    background: ${props => props.theme.colors.bg_secondary};
 `;
 
 export const HeaderContent = styled.div`
@@ -30,12 +35,12 @@ export const RoomTitle = styled.div`
     h1 {
         font-family: 'Poppins', sans-serif;
         font-size: 24px;
-        color: #29292e;
+        color: ${props => props.theme.colors.card_text_primary};
     }
 
     span {
         margin-left: 16px;
-        background: #e559f9;
+        background: ${props => props.theme.colors.tertiary};
         border-radius: 9999px;
         padding: 8px 16px;
         color: #fff;
@@ -67,8 +72,9 @@ export const QuestionFormInput = styled.textarea`
     border: 0;
     padding: 16px;
     border-radius: 8px;
-    background: #fefefe;
-    box-shadow: 0 2px 12px rgba($color: #000000, $alpha: 0.04);
+    background: ${props => props.theme.colors.card};
+    color: ${props => props.theme.colors.card_text_primary};
+    box-shadow: 0 2px 12px rgba(#000000, 0.04);
     resize: vertical;
     min-height: 130px;
 `;
@@ -81,7 +87,7 @@ export const FormFooter = styled.div`
 
     > span {
         font-size: 14px;
-        color: #737380;
+        color: ${props => props.theme.colors.card_text_secondary};
         font-weight: 500;
 
         button {
@@ -108,8 +114,15 @@ export const UserInfo = styled.div`
 
     span {
         margin-left: 8px;
-        color: #29292e;
+        color: ${props => props.theme.colors.card_text_primary};
         font-weight: 500;
         font-size: 14px;
     }
+`;
+
+
+export const RoomInfos = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 18px;
 `;
