@@ -63,7 +63,7 @@ export const QuestionList = styled.div`
     }
 `;
 
-export const EmptyQuestion = styled.div`
+export const EmptyQuestionContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,6 +75,14 @@ export const EmptyQuestion = styled.div`
     img {
         margin-bottom: 20px;
         margin-top: 30px;
+    }
+
+    h3 {
+        color: ${props => props.theme.colors.card_text_primary};
+    }
+
+    span {
+        color: ${props => props.theme.colors.card_text_secondary};
     }
 `;
 

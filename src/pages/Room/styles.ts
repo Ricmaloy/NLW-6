@@ -65,6 +65,14 @@ export const EmptyQuestionsContainer = styled.div`
         margin-bottom: 20px;
         margin-top: 30px;
     }
+
+    h3 {
+        color: ${props => props.theme.colors.card_text_primary};
+    }
+
+    span {
+        color: ${props => props.theme.colors.card_text_secondary};
+    }
 `;
 
 export const QuestionFormInput = styled.textarea`
@@ -120,9 +128,20 @@ export const UserInfo = styled.div`
     }
 `;
 
-
 export const RoomInfos = styled.div`
     display: flex;
     align-items: center;
     gap: 18px;
+`;
+
+export const AnonSwitch = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 10px;
+
+    span {
+        color: ${props => props.theme.colors.card_text_primary};
+    }
 `;

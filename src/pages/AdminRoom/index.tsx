@@ -31,7 +31,7 @@ import {
     Main, 
     QuestionList, 
     RoomTitle, 
-    EmptyQuestion,
+    EmptyQuestionContainer,
     RoomInfos,
     ModalContainer
 } from './styles';
@@ -165,11 +165,11 @@ export function AdminRoom() {
                             </Question>
                         )
                     }) ) : (
-                        <EmptyQuestion>
+                        <EmptyQuestionContainer>
                             <img src={EmptyQuestions} alt="Não há perguntas" />
                             <h3>Nenhuma pergunta por aqui...</h3>
                             <span>Envie a sala para seus ouvintes e começe a responder</span>
-                        </EmptyQuestion>
+                        </EmptyQuestionContainer>
                     )
                 }
                 </QuestionList>

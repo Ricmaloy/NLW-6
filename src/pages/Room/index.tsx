@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Switch from 'react-switch';
 
 import { RoomCode } from '../../components/RoomCode';
 import { Button } from '../../components/Button';
@@ -24,7 +25,8 @@ import {
     QuestionsList,
     RoomTitle,
     UserInfo,
-    RoomInfos
+    RoomInfos,
+    AnonSwitch
 } from './styles';
 
 import { useRoom } from '../../hooks/useRoom';
@@ -39,10 +41,12 @@ type RoomParams = {
 
 export function Room() {
     const { user } = useAuth();
+    const { theme } = useTheme();
     const params = useParams<RoomParams>();
-    const [newQuestion, setNewQuestion] = useState('');
     const roomId = params.id;
     const { questions, title } = useRoom(roomId);
+    const [newQuestion, setNewQuestion] = useState<string>('');
+    const [isAnonQuestion, setIsAnonQuestion] = useState<boolean>(false);
 
     async function handleSendNewQuestion(event: FormEvent) {
         event.preventDefault();
@@ -56,8 +60,8 @@ export function Room() {
         const question = {
             content: newQuestion,
             author: {
-                name: user.name,
-                avatar: user.avatar,
+                name: isAnonQuestion ? 'Anônimo(a)' : user.name,
+                avatar: isAnonQuestion ? 'https://www.hiringthing.com/wp-content/uploads/2018/11/avatar-generic.jpg' : user.avatar,
             },
             isHighlighted: false,
             isAnswered: false
@@ -85,8 +89,6 @@ export function Room() {
         }
     }
 
-    const { theme } = useTheme();
-
     return ( 
         <Container>
             <Header>
@@ -111,6 +113,24 @@ export function Room() {
                       placeholder="O que você quer perguntar ?"
                       onChange={event => setNewQuestion(event.target.value)}
                     />
+                   
+                    <AnonSwitch>
+                        <Switch
+                            onChange={() => setIsAnonQuestion(!isAnonQuestion)}
+                            checked={isAnonQuestion}
+                            checkedIcon={false}
+                            uncheckedIcon={false}
+                            height={15}
+                            width={40}
+                            handleDiameter={20}
+                            onColor={theme.colors.secondary}
+                            offColor={theme.colors.tertiary}
+                        />    
+                        <span>{isAnonQuestion ? 'Anônimo(a)' : 'Não anônimo(a)'}</span>
+                    </AnonSwitch>   
+
+
+
                     <FormFooter>
                         { user ? (
                             <UserInfo>
