@@ -55,7 +55,7 @@ $ yarn start
 
 ### melhorias que vão levar a aplicação para o próximo nível 🚀
 
-  🔲 - Dark Theme UI com switch 
+  ✅ - Dark Theme UI com switch 
 
   🔲 - Fazer pergunta de maneira anônima
   
